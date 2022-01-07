@@ -3,11 +3,6 @@ package com.example.filmespopulares.ui.listafilmes;
 
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListaFilmesActivity extends AppCompatActivity {
-
-
-    private ListaFilmesAdapter  adapter;
-
 
 
 
@@ -61,40 +52,10 @@ public class ListaFilmesActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<FilmesResult> call, Throwable t) {
-                        Log.d("TAG","Response = "+t.toString());
+
                     }
                 });
 
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-        });
-        return true;
-    }
-
-
-
-
 
 }
